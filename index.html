@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>اسماء الحسنیٰ — اللہ تعالیٰ کے 99 نام</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient star field / geometric backdrop -->
+  <div class="backdrop" aria-hidden="true">
+    <svg class="star-motif star-motif--one" viewBox="0 0 100 100"><use href="#eight-point-star"/></svg>
+    <svg class="star-motif star-motif--two" viewBox="0 0 100 100"><use href="#eight-point-star"/></svg>
+    <svg class="star-motif star-motif--three" viewBox="0 0 100 100"><use href="#eight-point-star"/></svg>
+  </div>
+
+  <!-- reusable star symbol -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <g id="eight-point-star">
+        <path d="M50 2 L61 32 L92 32 L67 51 L77 82 L50 63 L23 82 L33 51 L8 32 L39 32 Z" />
+      </g>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <p class="eyebrow">یاد رکھیے &mdash; ذکر و فکر</p>
+    <h1 class="site-title">اسماءُ الحُسنیٰ</h1>
+    <p class="site-subtitle">اللہ تعالیٰ کے 99 مبارک نام، عربی متن، اردو معنی اور صوتی تلاوت کے ساتھ</p>
+    <div class="bismillah-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="title-divider"><span class="diamond"></span></div>
+  </header>
+
+  <!-- Control deck -->
+  <section class="control-deck" aria-label="آواز کے کنٹرولز">
+    <div class="control-deck__inner">
+
+      <button id="playBtn" class="ctrl-btn ctrl-btn--play" type="button">
+        <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <span class="ctrl-label">شروع کریں</span>
+      </button>
+
+      <button id="pauseBtn" class="ctrl-btn ctrl-btn--pause" type="button" disabled>
+        <svg viewBox="0 0 24 24" class="icon icon-pause" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        <svg viewBox="0 0 24 24" class="icon icon-resume" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+        <span class="ctrl-label">ٹھہرائیں</span>
+      </button>
+
+      <button id="stopBtn" class="ctrl-btn ctrl-btn--stop" type="button" disabled>
+        <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+        <span class="ctrl-label">روک دیں</span>
+      </button>
+
+      <input type="text" id="searchInput" class="search-input" placeholder="نام تلاش کریں... (عربی / اردو / انگریزی)" />
+    </div>
+
+    <div class="now-reciting" id="nowReciting" aria-live="polite">
+      <span class="now-reciting__label">اس وقت:</span>
+      <span class="now-reciting__value" id="nowRecitingValue">تلاوت شروع کرنے کے لیے "شروع کریں" دبائیں</span>
+    </div>
+    <p class="voice-note" id="voiceNote"></p>
+  </section>
+
+  <!-- Names grid -->
+  <main>
+    <div id="namesGrid" class="names-grid" role="list" aria-label="اللہ تعالیٰ کے ننانوے نام">
+      <div class="loading" id="loadingMsg">نام لوڈ ہو رہے ہیں...</div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>سُبْحَانَ اللّٰہِ وَبِحَمْدِہٖ سُبْحَانَ اللّٰہِ الْعَظِیْمِ</p>
+    <p class="footer-note">عربی تلاوت آن لائن API اور Quran آڈیو سورس سے چلائی جاتی ہے (انٹرنیٹ ضروری ہے)؛ اردو معنی آپ کے براؤزر کی بلٹ‌اِن آواز سے بولے جاتے ہیں۔</p>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+/* ============================================================
+   ASMA-UL-HUSNA — design tokens
+   Palette:
+     --ink        #07211E  deep bottle-green/black (page background)
+     --panel      #0E332F  raised panel green
+     --panel-2    #123D38  hover/active panel
+     --gold       #C9A24B  primary gold accent (ink, dividers, active)
+     --gold-soft  #E7CE8C  bright gold for glow/highlight text
+     --ivory      #F3ECDA  primary text
+     --ivory-dim  #C9C1AC  secondary/muted text
+     --line       #2C5750  hairline borders
+   Type:
+     Arabic display: 'Amiri'
+     Urdu body:      'Noto Nastaliq Urdu'
+     Latin/UI:        'Cormorant Garamond'
+   ============================================================ */
+
+:root {
+  --ink: #07211E;
+  --panel: #0E332F;
+  --panel-2: #123D38;
+  --gold: #C9A24B;
+  --gold-soft: #E7CE8C;
+  --ivory: #F3ECDA;
+  --ivory-dim: #B9C4B9;
+  --line: #2C5750;
+  --danger: #B4553F;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--ink);
+  background-image:
+    radial-gradient(circle at 15% 8%, rgba(201,162,75,0.08), transparent 40%),
+    radial-gradient(circle at 85% 92%, rgba(201,162,75,0.06), transparent 45%);
+  color: var(--ivory);
+  font-family: 'Cormorant Garamond', serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* ---------- ambient backdrop ---------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.star-motif {
+  position: absolute;
+  fill: var(--gold);
+  opacity: 0.05;
+}
+.star-motif--one   { width: 42vw; height: 42vw; top: -12vw; right: -10vw; animation: spin-slow 140s linear infinite; }
+.star-motif--two   { width: 26vw; height: 26vw; bottom: -8vw; left: -6vw; animation: spin-slow 100s linear infinite reverse; }
+.star-motif--three { width: 16vw; height: 16vw; top: 45%; left: 42%; animation: spin-slow 90s linear infinite; opacity: 0.035; }
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ---------- header ---------- */
+.site-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 3.5rem 1.5rem 2rem;
+}
+.eyebrow {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  font-size: 1rem;
+  margin: 0 0 0.4rem;
+  opacity: 0.85;
+}
+.site-title {
+  font-family: 'Amiri', serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  margin: 0;
+  color: var(--gold-soft);
+  text-shadow: 0 0 30px rgba(231,206,140,0.25);
+  letter-spacing: 0.01em;
+}
+.site-subtitle {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  color: var(--ivory-dim);
+  font-size: 1.05rem;
+  max-width: 40rem;
+  margin: 0.8rem auto 0;
+  line-height: 2;
+}
+.bismillah-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.6rem;
+  color: var(--gold-soft);
+  margin-top: 1.4rem;
+  text-shadow: 0 0 12px rgba(231,206,140,0.3);
+}
+.title-divider { margin: 1.5rem auto 0; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+.title-divider::before, .title-divider::after {
+  content: "";
+  height: 1px;
+  width: 6rem;
+  background: linear-gradient(to var(--dir, right), transparent, var(--line));
+}
+.title-divider::after { --dir: left; }
+.diamond {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+/* ---------- control deck ---------- */
+.control-deck {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(7, 33, 30, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 1rem 0.6rem;
+}
+.control-deck__inner {
+  max-width: 64rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  justify-content: center;
+}
+.ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 0.55rem 1.3rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 2px 10px rgba(201,162,75,0.25);
+}
+.ctrl-btn .icon { width: 1.1rem; height: 1.1rem; fill: currentColor; }
+.ctrl-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,162,75,0.4); }
+.ctrl-btn:active:not(:disabled) { transform: translateY(0); }
+.ctrl-btn:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 2px; }
+.ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
+
+.ctrl-btn--pause, .ctrl-btn--stop {
+  background: transparent;
+  color: var(--ivory);
+  border-color: var(--line);
+}
+.ctrl-btn--pause:hover:not(:disabled), .ctrl-btn--stop:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--gold-soft);
+}
+.ctrl-btn--stop:hover:not(:disabled) { border-color: var(--danger); color: #E0A08D; }
+
+.search-input {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 0.95rem;
+  color: var(--ivory);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.55rem 1.2rem;
+  min-width: 15rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.search-input::placeholder { color: var(--ivory-dim); opacity: 0.7; }
+.search-input:focus { border-color: var(--gold); }
+
+.now-reciting {
+  max-width: 64rem;
+  margin: 0.6rem auto 0;
+  text-align: center;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 1rem;
+  color: var(--ivory-dim);
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+  justify-content: center;
+}
+.now-reciting__label { color: var(--gold); }
+.now-reciting__value { color: var(--gold-soft); }
+
+.voice-note {
+  max-width: 60rem;
+  margin: 0.4rem auto 0;
+  text-align: center;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 0.85rem;
+  color: var(--ivory-dim);
+  opacity: 0.75;
+  min-height: 1.2em;
+}
+
+/* ---------- names grid ---------- */
+main { position: relative; z-index: 1; padding: 2.5rem 1.5rem 1rem; }
+
+.names-grid {
+  max-width: 78rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.1rem;
+}
+@media (max-width: 1100px) { .names-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 780px)  { .names-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px)  { .names-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
+
+.loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  color: var(--gold-soft);
+  font-size: 1.3rem;
+}
+
+.name-box {
+  position: relative;
+  background: linear-gradient(160deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.1rem 0.9rem 0.9rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  overflow: hidden;
+}
+.name-box::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(201,162,75,0.15);
+  border-radius: 9px;
+  pointer-events: none;
+}
+.name-box:hover { transform: translateY(-2px); border-color: rgba(201,162,75,0.5); }
+.name-box:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 2px; }
+
+.name-box__number {
+  position: absolute;
+  top: 0.55rem;
+  inset-inline-start: 0.65rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  color: var(--gold);
+  opacity: 0.75;
+}
+
+.name-box__badge {
+  position: absolute;
+  top: 0.5rem;
+  inset-inline-end: 0.55rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--gold-soft);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  display: none;
+  box-shadow: 0 0 10px rgba(231,206,140,0.7);
+}
+.name-box.is-active .name-box__badge { display: inline-block; }
+
+.name-box__arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.9rem;
+  color: var(--ivory);
+  margin: 0.6rem 0 0.35rem;
+  line-height: 1.4;
+  direction: rtl;
+}
+.name-box__translit {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.45rem;
+}
+.name-box__meaning {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  color: var(--ivory-dim);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin: 0 0 0.6rem;
+}
+.name-box__english {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--ivory-dim);
+  opacity: 0.75;
+  font-size: 0.82rem;
+  margin: 0 0 0.6rem;
+}
+
+.name-box__waves {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin: 0.3rem 0;
+  opacity: 0;
+}
+.name-box__waves span {
+  display: block;
+  width: 3px;
+  height: 6px;
+  border-radius: 4px;
+  background: var(--gold-soft);
+}
+.name-box.is-active .name-box__waves { opacity: 1; }
+.name-box.is-active .name-box__waves span { animation: sound-wave 0.8s ease-in-out infinite alternate; }
+.name-box.is-active .name-box__waves span:nth-child(1) { animation-delay: 0s; }
+.name-box.is-active .name-box__waves span:nth-child(2) { animation-delay: 0.15s; }
+.name-box.is-active .name-box__waves span:nth-child(3) { animation-delay: 0.3s; }
+.name-box.is-active .name-box__waves span:nth-child(4) { animation-delay: 0.15s; }
+.name-box.is-active .name-box__waves span:nth-child(5) { animation-delay: 0s; }
+@keyframes sound-wave { from { height: 4px; } to { height: 16px; } }
+
+.name-box__recite {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 0.8rem;
+  color: var(--gold-soft);
+  background: rgba(201,162,75,0.1);
+  border: 1px solid rgba(201,162,75,0.4);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.name-box__recite:hover { background: var(--gold); color: var(--ink); }
+
+/* active / currently-reciting state */
+.name-box.is-active {
+  background: linear-gradient(160deg, #1B4A42, #123D38);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), 0 8px 30px rgba(201,162,75,0.35), 0 0 40px rgba(201,162,75,0.15);
+  transform: translateY(-3px) scale(1.03);
+  z-index: 2;
+}
+.name-box.is-active::after {
+  content: "";
+  position: absolute;
+  top: -30%; left: -30%;
+  width: 160%; height: 160%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23C9A24B' d='M50 2 L61 32 L92 32 L67 51 L77 82 L50 63 L23 82 L33 51 L8 32 L39 32 Z'/%3E%3C/svg%3E") center/60% no-repeat;
+  opacity: 0.08;
+  animation: pulse-star 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes pulse-star {
+  0%, 100% { opacity: 0.05; transform: scale(0.9) rotate(0deg); }
+  50%      { opacity: 0.14; transform: scale(1.05) rotate(8deg); }
+}
+.name-box.is-active .name-box__arabic { color: var(--gold-soft); }
+.name-box.is-active .name-box__number { color: var(--gold-soft); opacity: 1; }
+
+/* already-recited (played) state, subtle */
+.name-box.is-done { opacity: 0.68; }
+.name-box.is-done .name-box__arabic { color: var(--ivory-dim); }
+
+/* ---------- footer ---------- */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 3rem 1.5rem 3.5rem;
+  color: var(--gold);
+  font-family: 'Amiri', serif;
+  font-size: 1.15rem;
+}
+.footer-note {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  color: var(--ivory-dim);
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 0.6rem;
+}
